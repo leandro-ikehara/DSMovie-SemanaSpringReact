@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,6 +21,9 @@ public class Movie
     private Integer count;
     private String image;
 
+    @OneToMany(mappedBy = "id.movie")
+    private Set<Score> scores = new HashSet<>();
+
     public Movie() {}
 
     public Movie(Long id, String title, Double score, Integer count, String image)
@@ -28,5 +33,9 @@ public class Movie
         this.score = score;
         this.count = count;
         this.image = image;
+    }
+
+    public Set<Score> getScores() {
+        return scores;
     }
 }
